@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -66,10 +65,10 @@ namespace LeapMotion {
 
             this.fpsDisplay.Content = frame.CurrentFramesPerSecond.ToString();
             if (frame.Hands.Count > 0) {
-                // determine if hand is left or right hand
-                this.handTypeDisplay.Content = frame.Hands[0].IsLeft ? "Left" : "Right";
-
                 Hand hand = frame.Hands[0];
+
+                // determine if hand is left or right hand
+                this.handTypeDisplay.Content = hand.IsLeft ? "Left" : "Right";
 
                 // fingers
                 Finger thumb = hand.Fingers[0];
