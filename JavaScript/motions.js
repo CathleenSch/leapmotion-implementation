@@ -41,6 +41,7 @@ function thumbOpposition(hand) {
         }
 
         return(`
+        hand type: ${hand.type}
         pinch strength: ${pinchStrength}
         pinching finger: ${util.fingerTypeToNameLookup(pinchingFinger)}
         \t| distance thumb - pinching finger: ${distance}
@@ -53,7 +54,25 @@ function thumbOpposition(hand) {
 }
 
 
+function wristFlexionExtension(hand) {
+    const arm = hand.arm;
+    const armDirection = arm.direction();
+    const handDirection = hand.direction;
+
+    const angle = util.getAngleBetweenVectors(armDirection, handDirection);
+    return(`
+    hand type: ${hand.type}
+    directions:
+    \t| arm: ${armDirection}
+    \t| hand: ${handDirection}
+    
+    angle: ${angle}
+    `);
+}
+
+
 module.exports = {
     thumbAbduction,
     thumbOpposition,
+    wristFlexionExtension,
 }

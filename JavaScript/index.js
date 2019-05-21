@@ -39,6 +39,10 @@ controller.on('deviceFrame', (frame) => {
         if (mode === 'opp') {
             output = motions.thumbOpposition(hand);
         }
+
+        if (mode === 'wfe') {
+            output = motions.wristFlexionExtension(hand);
+        }
     } else {
         output = `no hand detected`;
     }
