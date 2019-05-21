@@ -49,7 +49,21 @@ function getAngleBetweenVectors(u, v) {
     return roundToFive(angleDegrees);
 }
 
+
+function fingerTypeToNameLookup(finger) {
+    const types = {
+        0: 'thumb',
+        1: 'index',
+        2: 'middle',
+        3: 'ring',
+        4: 'pinky'
+    }
+
+    return types[finger.type];
+}
+
 module.exports = {
     roundToFive,
     getAngleBetweenVectors,
+    fingerTypeToNameLookup,
 }

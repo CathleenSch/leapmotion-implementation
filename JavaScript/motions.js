@@ -21,6 +21,39 @@ function thumbAbduction(hand) {
 }
 
 
+function thumbOpposition(hand) {
+    const pinchStrength = hand.pinchStrength;
+    let pinchingFinger;
+    let distance;
+
+    if (pinchStrength > 0) {
+        let closest = 500;
+        let currentFinger;
+
+        for (let i = 1; i < hand.fingers.length; i++) {
+            currentFinger = hand.fingers[i];
+            distance = leapjs.vec3.distance(hand.thumb.tipPosition, currentFinger.tipPosition);
+
+            if (distance < closest) {
+                closest = distance;
+                pinchingFinger = currentFinger;
+            }
+        }
+
+        return(`
+        pinch strength: ${pinchStrength}
+        pinching finger: ${util.fingerTypeToNameLookup(pinchingFinger)}
+        \t| distance thumb - pinching finger: ${distance}
+        `);
+    }
+
+    return(`
+    no pinching motion detected
+    `);
+}
+
+
 module.exports = {
     thumbAbduction,
+    thumbOpposition,
 }

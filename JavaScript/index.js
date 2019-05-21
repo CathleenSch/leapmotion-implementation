@@ -5,6 +5,8 @@ const motions = require('./motions');
 const controller = new leapjs.Controller();
 const out = process.stdout;
 
+const mode = process.argv[2];
+
 controller.on('connect', () => {
     console.log('successfully connected');
 });
@@ -30,8 +32,13 @@ controller.on('deviceFrame', (frame) => {
         const ring = hand.ringFinger;
         const pinky = hand.pinky;
 
-        output = motions.thumbAbduction(hand);
+        if (mode === 'abd') {
+            output = motions.thumbAbduction(hand);
+        }
 
+        if (mode === 'opp') {
+            output = motions.thumbOpposition(hand);
+        }
     } else {
         output = `no hand detected`;
     }
