@@ -1,6 +1,7 @@
 ﻿using Leap;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -8,6 +9,10 @@ using System.Windows.Media.Imaging;
 
 namespace LeapMotion {
     public partial class MainWindow : Window {
+        bool firstFrame = true;
+        bool recording = false;
+        DateTime startRecording;
+
         private byte[] imagedata = new byte[1];
         private Controller controller = new Controller();
         WriteableBitmap bitmap;
@@ -33,10 +38,11 @@ namespace LeapMotion {
 
         void newFrameHandler(object sender, FrameEventArgs eventArgs) {
             Frame frame = eventArgs.frame;
-            debugTextDisplay.AppendText("Goes through here 1\n");
             fpsDisplay.Content = frame.CurrentFramesPerSecond.ToString();
             if (frame.Hands.Count > 0) {
                 Hand hand = frame.Hands[0];
+
+                string handType = hand.IsLeft ? "Left" : "Right";
 
                 // fingers
                 Finger thumb = hand.Fingers[0];
@@ -45,10 +51,26 @@ namespace LeapMotion {
                 Finger ring = hand.Fingers[3];
                 Finger pinky = hand.Fingers[4];
 
-                debugTextDisplay.AppendText("Goes through here 2\n");
                 pinchingDisplay.Content = (hand.PinchStrength).ToString();
-                debugTextDisplay.AppendText("Goes through here 3\n");
                 pinchingFingerDisplay.Content = getPinchingFinger(hand);
+
+                if (recording == true) {
+                    DateTime currentTime = DateTime.Now;
+                    int elapsedTime = Convert.ToInt32(((TimeSpan) (currentTime - startRecording)).TotalMilliseconds);
+                    string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | pinchStrength: " + hand.PinchStrength.ToString() + " | finger: " + getPinchingFinger(hand);
+                    if (firstFrame == true) {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbOpposition\LeapMotion\opp.txt"))
+                        {
+                            recordFile.WriteLine(line);
+                        };
+
+                        firstFrame = false;
+                    } else {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbOpposition\LeapMotion\opp.txt", true)) {
+                            recordFile.WriteLine(line);
+                        };
+                    }
+                }
                 
             }
             
@@ -67,7 +89,6 @@ namespace LeapMotion {
         }
 
         string getPinchingFinger(Hand hand) {
-            debugTextDisplay.AppendText("Goes through here 4\n");
             string[] fingers = new string[5] { "thumb", "index", "middle", "ring", "pinky" };
 
             float distance = 500;
@@ -86,8 +107,18 @@ namespace LeapMotion {
                 }
             }
 
-            debugTextDisplay.AppendText("Goes through here 5\n");
             return fingers[index];
+        }
+
+        private void StartRecordingButton_Click(object sender, RoutedEventArgs e) {
+            recording = true;
+            this.isRecordingDisplay.Content = "Recording";
+            startRecording = DateTime.Now;
+        }
+
+        private void StopRecordingButton_Click(object sender, RoutedEventArgs e) {
+            recording = false;
+            this.isRecordingDisplay.Content = "Not recording";
         }
     }
 }

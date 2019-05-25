@@ -20,6 +20,9 @@
         <TextBox x:Name="debugTextDisplay" HorizontalAlignment="Left" Height="89" Margin="10,545,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="640"/>
         <Label Content="Angle:" HorizontalAlignment="Left" Margin="687,91,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="98"/>
         <Label x:Name="angleDisplay" Content="" HorizontalAlignment="Left" Margin="824,91,0,0" VerticalAlignment="Top" Width="156"/>
+        <Button x:Name="startRecordingButton" Content="Start Recording" HorizontalAlignment="Left" Margin="655,244,0,0" VerticalAlignment="Top" Width="130" Height="50" FontSize="16" FontWeight="Bold" Click="StartRecordingButton_Click"/>
+        <Button x:Name="stopRecordingButton" Content="Stop Recording" HorizontalAlignment="Right" Margin="0,244,118,0" VerticalAlignment="Top" Width="132" Height="50" FontSize="16" FontWeight="Bold" Grid.Column="1" Click="StopRecordingButton_Click"/>
+        <Label x:Name="isRecordingDisplay" Content="Not recording" HorizontalAlignment="Left" Margin="748,316,0,0" VerticalAlignment="Top" FontSize="14" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

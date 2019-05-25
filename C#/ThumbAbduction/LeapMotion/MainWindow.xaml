@@ -8,18 +8,22 @@
         Title="MainWindow" Height="1500" Width="1500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="599*"/>
-            <ColumnDefinition Width="196*"/>
+            <ColumnDefinition Width="210*"/>
+            <ColumnDefinition Width="71*"/>
+            <ColumnDefinition Width="92*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Leap Motion Controller - Motion Tracking" HorizontalAlignment="Left" VerticalAlignment="Top" Width="785" FontSize="16" Grid.ColumnSpan="2"/>
-        <Image x:Name="frameDisplay" HorizontalAlignment="Left" Height="480" Margin="10,47,0,-104.5" VerticalAlignment="Top" Width="640" Grid.ColumnSpan="2"/>
+        <Label Content="Leap Motion Controller - Motion Tracking" HorizontalAlignment="Left" VerticalAlignment="Top" Width="785" FontSize="16"/>
+        <Image x:Name="frameDisplay" HorizontalAlignment="Left" Height="480" Margin="10,47,0,0" VerticalAlignment="Top" Width="640"/>
         <Label Content="Angle:" HorizontalAlignment="Left" Margin="687,47,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="angleDisplay" Content="" HorizontalAlignment="Left" Margin="824,47,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label x:Name="angleDisplay" Content="" HorizontalAlignment="Left" Margin="824,47,0,0" VerticalAlignment="Top" Width="156" Grid.ColumnSpan="2"/>
         <Label Content="FPS:" HorizontalAlignment="Left" Margin="687,160,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="fpsDisplay" Content="" HorizontalAlignment="Left" Margin="824,160,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label x:Name="fpsDisplay" Content="" HorizontalAlignment="Left" Margin="824,160,0,0" VerticalAlignment="Top" Width="156" Grid.ColumnSpan="2"/>
         <TextBox x:Name="debugTextDisplay" HorizontalAlignment="Left" Height="89" Margin="10,545,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="640"/>
         <Label Content="Hand:" HorizontalAlignment="Left" Margin="687,91,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="handTypeDisplay" Content="" HorizontalAlignment="Left" Margin="824,91,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label x:Name="handTypeDisplay" Content="" HorizontalAlignment="Left" Margin="824,91,0,0" VerticalAlignment="Top" Width="156" Grid.ColumnSpan="2"/>
+        <Button x:Name="startRecordingButton" Content="Start Recording" HorizontalAlignment="Left" Margin="58,338,0,0" VerticalAlignment="Top" Width="168" Height="68" FontSize="16" FontWeight="Bold" Grid.Column="1" Click="StartRecordingButton_Click"/>
+        <Button x:Name="stopRecordingButton" Content="Stop Recording" HorizontalAlignment="Right" Margin="0,338,200,0" VerticalAlignment="Top" Width="168" Height="68" FontSize="16" FontWeight="Bold" Grid.Column="2" Click="StopRecordingButton_Click"/>
+        <Label x:Name="isRecordingDisplay" Content="Not recording" Grid.Column="2" HorizontalAlignment="Left" Margin="218,359,0,0" VerticalAlignment="Top" FontSize="14"/>
 
     </Grid>
 </Window>

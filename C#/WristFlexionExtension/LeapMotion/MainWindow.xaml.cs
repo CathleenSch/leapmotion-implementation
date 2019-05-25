@@ -1,6 +1,7 @@
 ﻿using Leap;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -8,6 +9,10 @@ using System.Windows.Media.Imaging;
 
 namespace LeapMotion {
     public partial class MainWindow : Window {
+        bool firstFrame = true;
+        bool recording = false;
+        DateTime startRecording;
+
         double[][] ranges = new double[20][] {
             new double[2] {0, 2.5},
             new double[2] {2.5, 7.5},
@@ -65,6 +70,9 @@ namespace LeapMotion {
             if (frame.Hands.Count > 0) {
                 Hand hand = frame.Hands[0];
 
+                string handType = hand.IsLeft ? "Left" : "Right";
+
+
                 // fingers
                 Finger thumb = hand.Fingers[0];
                 Finger pointer = hand.Fingers[1];
@@ -83,6 +91,25 @@ namespace LeapMotion {
                 currentAngle = angleDegrees;
                 calculateAverageAngle();
                 this.angleDisplay.Content = currentAverageAngle.ToString();
+
+                if (recording == true) {
+                    DateTime currentTime = DateTime.Now;
+                    int elapsedTime = Convert.ToInt32(((TimeSpan)(currentTime - startRecording)).TotalMilliseconds);
+                    string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | angle: " + currentAverageAngle.ToString();
+                    if (firstFrame == true) {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\WristFlexionExtension\LeapMotion\wfe.txt"))
+                        {
+                            recordFile.WriteLine(line);
+                        };
+
+                        firstFrame = false;
+                    } else {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\WristFlexionExtension\LeapMotion\wfe.txt", true))
+                        {
+                            recordFile.WriteLine(line);
+                        };
+                    }
+                }
             }
             
             controller.RequestImages(frame.Id, Leap.Image.ImageType.DEFAULT, imagedata);
@@ -114,6 +141,19 @@ namespace LeapMotion {
             }
 
             currentAverageAngle = currentRange[1] - 2.5;
+        }
+
+        private void StartRecordingButton_Click(object sender, RoutedEventArgs e)
+        {
+            recording = true;
+            this.isRecordingDisplay.Content = "Recording";
+            startRecording = DateTime.Now;
+        }
+
+        private void StopRecordingButton_Click(object sender, RoutedEventArgs e)
+        {
+            recording = false;
+            this.isRecordingDisplay.Content = "Not recording";
         }
     }
 }
