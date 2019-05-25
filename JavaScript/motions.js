@@ -10,13 +10,18 @@ function thumbAbduction(hand) {
     // calculate angle between thumb and index
     const angle = util.getAngleBetweenVectors(thumbDirection, indexDirection);
     
-    return(`
+    const output = `
     hand type: ${hand.type}
     directions:
     \t| thumb: ${thumbDirection}
     \t| index finger: ${indexDirection}
     
-    angle thumb - index finger: ${angle}`);
+    angle thumb - index finger: ${angle}`;
+
+    return{
+        angle,
+        output,
+    };
     
 }
 
@@ -40,12 +45,21 @@ function thumbOpposition(hand) {
             }
         }
 
-        return(`
+        const fingerName = util.fingerTypeToNameLookup(pinchingFinger);
+
+        const output = `
         hand type: ${hand.type}
         pinch strength: ${pinchStrength}
-        pinching finger: ${util.fingerTypeToNameLookup(pinchingFinger)}
+        pinching finger: ${fingerName}
         \t| distance thumb - pinching finger: ${distance}
-        `);
+        `;
+
+        return{
+            pinchStrength,
+            fingerName,
+            closest,
+            output,
+        };
     }
 
     return(`
@@ -60,14 +74,19 @@ function wristFlexionExtension(hand) {
     const handDirection = hand.direction;
 
     const angle = util.getAngleBetweenVectors(armDirection, handDirection);
-    return(`
+    const output = `
     hand type: ${hand.type}
     directions:
     \t| arm: ${armDirection}
     \t| hand: ${handDirection}
     
     angle: ${angle}
-    `);
+    `;
+
+    return {
+        angle,
+        output,
+    };
 }
 
 
