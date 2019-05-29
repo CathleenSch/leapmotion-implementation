@@ -25,15 +25,15 @@ if (mode === 'abd') {
     fs.unlink('opp.txt', () => {
         stream = fs.createWriteStream('opp.txt', {flags: 'a'});
     });
-} else if (mode === 'wf') {
+} else if (mode === 'wfe') {
     recordingTime = 7000;
-    fs.unlink('wf.txt', () => {
-        stream = fs.createWriteStream('wf.txt', {flags: 'a'});
+    fs.unlink('wfe.txt', () => {
+        stream = fs.createWriteStream('wfe.txt', {flags: 'a'});
     });
 } else {
     recordingTime = 7000;
-    fs.unlink('we.txt', () => {
-        stream = fs.createWriteStream('we.txt', {flags: 'a'});
+    fs.unlink('urd.txt', () => {
+        stream = fs.createWriteStream('urd.txt', {flags: 'a'});
     });
 }
 
@@ -87,14 +87,14 @@ function startLeapMotionService() {
                 output = result.output;
             }
 
-            if (mode === 'wf') {
+            if (mode === 'wfe') {
                 const result = motions.wristFlexionExtension(hand);
                 stream.write(`timestamp: ${timeElapsed} | hand: ${hand.type} | angle: ${result.angle}\n`)
 
                 output = result.output;
             }
 
-            if (mode === 'we') {
+            if (mode === 'urd') {
                 const result = motions.wristFlexionExtension(hand);
                 stream.write(`timestamp: ${timeElapsed} | hand: ${hand.type} | angle: ${result.angle}\n`)
 
