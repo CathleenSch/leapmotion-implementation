@@ -13,6 +13,11 @@ let firstLine = true;
 
 lineReader.on('line', (line) => {
     console.log(`read: ${line}`);
+
+    if (file.indexOf('C#') > -1) {
+        line = line.replace(/,/g, '.');
+    }
+
     let separated = line.split(' | ').join(';').split(': ').join(';').split(';');
     if (firstLine === true) {
         let header = [];
