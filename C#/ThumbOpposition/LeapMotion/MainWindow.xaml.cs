@@ -58,6 +58,7 @@ namespace LeapMotion {
                 if (recording == true) {
                     DateTime currentTime = DateTime.Now;
                     int elapsedTime = Convert.ToInt32(((TimeSpan) (currentTime - startRecording)).TotalMilliseconds);
+                    timeDisplay.Content = elapsedTime.ToString();
                     string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | pinchStrength: " + hand.PinchStrength.ToString() + " | finger: " + getPinchingFinger(hand) + " | distance: " + endDistance;
                     if (firstFrame == true) {
                         using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\opp.txt"))

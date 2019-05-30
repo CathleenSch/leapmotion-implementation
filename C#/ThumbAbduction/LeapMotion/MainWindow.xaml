@@ -23,7 +23,8 @@
         <Label x:Name="handTypeDisplay" Content="" HorizontalAlignment="Left" Margin="824,91,0,0" VerticalAlignment="Top" Width="156" Grid.ColumnSpan="2"/>
         <Button x:Name="startRecordingButton" Content="Start Recording" HorizontalAlignment="Left" Margin="58,338,0,0" VerticalAlignment="Top" Width="168" Height="68" FontSize="16" FontWeight="Bold" Grid.Column="1" Click="StartRecordingButton_Click"/>
         <Button x:Name="stopRecordingButton" Content="Stop Recording" HorizontalAlignment="Right" Margin="0,338,200,0" VerticalAlignment="Top" Width="168" Height="68" FontSize="16" FontWeight="Bold" Grid.Column="2" Click="StopRecordingButton_Click"/>
-        <Label x:Name="isRecordingDisplay" Content="Not recording" Grid.Column="2" HorizontalAlignment="Left" Margin="218,359,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="isRecordingDisplay" Content="Not recording" Grid.Column="2" HorizontalAlignment="Left" Margin="218,318,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="timeDisplay" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="219,352,0,0" VerticalAlignment="Top" Height="51" Width="96"/>
 
     </Grid>
 </Window>

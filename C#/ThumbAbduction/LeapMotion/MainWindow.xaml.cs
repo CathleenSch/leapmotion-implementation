@@ -96,6 +96,7 @@ namespace LeapMotion {
                 if (recording == true) {
                     DateTime currentTime = DateTime.Now;
                     int elapsedTime = Convert.ToInt32(((TimeSpan) (currentTime - startRecording)).TotalMilliseconds);
+                    timeDisplay.Content = elapsedTime.ToString();
                     string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | angle: " + currentAverageAngle.ToString();
                     if (firstFrame == true) {
                         using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\abd.txt"))
