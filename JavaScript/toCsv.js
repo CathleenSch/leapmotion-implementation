@@ -14,8 +14,8 @@ let firstLine = true;
 lineReader.on('line', (line) => {
     console.log(`read: ${line}`);
 
-    if (file.indexOf('C#') > -1) {
-        line = line.replace(/,/g, '.');
+    if(file.indexOf('JS') > -1) {
+        line = line.replace(/\./g, ',');
     }
 
     let separated = line.split(' | ').join(';').split(': ').join(';').split(';');
@@ -31,8 +31,8 @@ lineReader.on('line', (line) => {
             }
         }
 
-        header = header.join(',');
-        writeLine = writeLine.join(',');
+        header = header.join(';');
+        writeLine = writeLine.join(';');
 
         stream.write(`${header}\n`);
         stream.write(`${writeLine}\n`);
@@ -46,6 +46,8 @@ lineReader.on('line', (line) => {
                 writeLine.push(separated[i]);
             }
         }
+
+        writeLine = writeLine.join(';');
 
         stream.write(`${writeLine}\n`);
     }
