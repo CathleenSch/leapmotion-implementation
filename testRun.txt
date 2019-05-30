@@ -1,0 +1,17 @@
+runs:
+thumb abduction
+    - hold
+    - open and close (2s hold)
+
+opposition (15s)
+    - open and close 2x
+    
+flexion & extension
+    - move left and right (0.5-1s hold)
+    - hold left
+    - hold right
+
+ulnar & radial deviation
+    - move left and right (1s hold)
+    - hold left
+    - hold right
