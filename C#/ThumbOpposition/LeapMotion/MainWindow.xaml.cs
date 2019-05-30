@@ -12,6 +12,7 @@ namespace LeapMotion {
         bool firstFrame = true;
         bool recording = false;
         DateTime startRecording;
+        float endDistance;
 
         private byte[] imagedata = new byte[1];
         private Controller controller = new Controller();
@@ -57,16 +58,16 @@ namespace LeapMotion {
                 if (recording == true) {
                     DateTime currentTime = DateTime.Now;
                     int elapsedTime = Convert.ToInt32(((TimeSpan) (currentTime - startRecording)).TotalMilliseconds);
-                    string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | pinchStrength: " + hand.PinchStrength.ToString() + " | finger: " + getPinchingFinger(hand);
+                    string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | pinchStrength: " + hand.PinchStrength.ToString() + " | finger: " + getPinchingFinger(hand) + " | distance: " + endDistance;
                     if (firstFrame == true) {
-                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbOpposition\LeapMotion\opp.txt"))
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\opp.txt"))
                         {
                             recordFile.WriteLine(line);
                         };
 
                         firstFrame = false;
                     } else {
-                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbOpposition\LeapMotion\opp.txt", true)) {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\opp.txt", true)) {
                             recordFile.WriteLine(line);
                         };
                     }
@@ -106,6 +107,8 @@ namespace LeapMotion {
                     index = i;
                 }
             }
+
+            endDistance = distance;
 
             return fingers[index];
         }

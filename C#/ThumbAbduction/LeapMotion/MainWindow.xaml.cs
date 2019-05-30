@@ -98,14 +98,14 @@ namespace LeapMotion {
                     int elapsedTime = Convert.ToInt32(((TimeSpan) (currentTime - startRecording)).TotalMilliseconds);
                     string line = "timestamp: " + elapsedTime.ToString() + " | hand: " + handType + " | angle: " + currentAverageAngle.ToString();
                     if (firstFrame == true) {
-                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbAbduction\LeapMotion\abd.txt"))
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\abd.txt"))
                         {
                             recordFile.WriteLine(line);
                         };
 
                         firstFrame = false;
                     } else {
-                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\ThumbAbduction\LeapMotion\abd.txt", true)) {
+                        using (StreamWriter recordFile = new StreamWriter(@"C:\Users\casch\Documents\Work\Uni\Studienarbeit\Implementierung\C#\abd.txt", true)) {
                             recordFile.WriteLine(line);
                         };
                     }

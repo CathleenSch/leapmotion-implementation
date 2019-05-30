@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeapMotion", "LeapMotion\LeapMotion.csproj", "{12B3F5C7-C937-454B-BDD1-BCE2AB9C6FEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12B3F5C7-C937-454B-BDD1-BCE2AB9C6FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12B3F5C7-C937-454B-BDD1-BCE2AB9C6FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12B3F5C7-C937-454B-BDD1-BCE2AB9C6FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12B3F5C7-C937-454B-BDD1-BCE2AB9C6FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF5BC99B-5383-47F1-82AB-C937B0E113BD}
+	EndGlobalSection
+EndGlobal
