@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "leapjs": "^0.6.4"
+    "leapjs": "^1.1.1"
   }
 }
